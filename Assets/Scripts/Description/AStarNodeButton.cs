@@ -44,17 +44,17 @@ public class AStarNodeButton : MonoBehaviour
         _heuristicsText = transform.Find("Heuristics").GetComponent<Text>();
         _totalText = transform.Find("Sum").GetComponent<Text>();
         _arrowGroup = new Image[8];
-        _arrowGroup[0] = transform.Find("1").GetComponent<Image>();
-        _arrowGroup[1] = transform.Find("3").GetComponent<Image>();
-        _arrowGroup[2] = transform.Find("5").GetComponent<Image>();
-        _arrowGroup[3] = transform.Find("6").GetComponent<Image>();
-        _arrowGroup[4] = transform.Find("7").GetComponent<Image>();
-        _arrowGroup[5] = transform.Find("9").GetComponent<Image>();
-        _arrowGroup[6] = transform.Find("11").GetComponent<Image>();
-        _arrowGroup[7] = transform.Find("12").GetComponent<Image>();
+        _arrowGroup[0] = transform.Find("ArrowGroup").transform.Find("1").GetComponent<Image>();
+        _arrowGroup[1] = transform.Find("ArrowGroup").transform.Find("3").GetComponent<Image>();
+        _arrowGroup[2] = transform.Find("ArrowGroup").transform.Find("5").GetComponent<Image>();
+        _arrowGroup[3] = transform.Find("ArrowGroup").transform.Find("6").GetComponent<Image>();
+        _arrowGroup[4] = transform.Find("ArrowGroup").transform.Find("7").GetComponent<Image>();
+        _arrowGroup[5] = transform.Find("ArrowGroup").transform.Find("9").GetComponent<Image>();
+        _arrowGroup[6] = transform.Find("ArrowGroup").transform.Find("11").GetComponent<Image>();
+        _arrowGroup[7] = transform.Find("ArrowGroup").transform.Find("12").GetComponent<Image>();
         foreach (var arrow in _arrowGroup)
         {
-            arrow.color = new Color(0,0,0,0);
+            arrow.color = new Color(255,255,255,0);
         }
     }
     
