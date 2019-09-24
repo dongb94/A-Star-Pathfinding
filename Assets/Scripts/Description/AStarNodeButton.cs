@@ -7,8 +7,10 @@ public class AStarNodeButton : MonoBehaviour
 {
     [NonSerialized] public AStarNodeButton parents;
     [NonSerialized] public bool isWalkable;
+    [NonSerialized] public int x, y;
 
     private int cost, heuristics, totalCost;
+    private bool isEndNode;
 
     private Image _UIImage;
     private Text _costText, _heuristicsText, _totalText;
@@ -17,13 +19,22 @@ public class AStarNodeButton : MonoBehaviour
 
     public void OnClick()
     {
+        if (isEndNode) return;
+        if (!AStar.Instance.isSetEnd)
+        {
+            isEndNode = true;
+            _totalText.text = !AStar.Instance.isSetStart ? "START" : "END";
+            AStar.Instance.SetStartAndEnd(this);
+            _UIImage.color = new Color(0,128/255f,1f);
+            return;
+        }
         isWalkable = !isWalkable;
         _UIImage.color = isWalkable?Color.white:Color.black;
     }
 
     public void FindThePath()
     {
-        _UIImage.color = Color.green;
+        _UIImage.color = new Color(0,128/255f,1f);
         if(parents!=null) parents.FindThePath();
     }
 
@@ -32,7 +43,7 @@ public class AStarNodeButton : MonoBehaviour
         parents = parentsNode;
         foreach (var arrow in _arrowGroup)
         {
-            arrow.color = new Color(255,255,255,0);
+            arrow.color = new Color(1f,1f,1f,0);
         }
         _arrowGroup[localRotation].color = Color.white;
     }
@@ -54,9 +65,10 @@ public class AStarNodeButton : MonoBehaviour
         _arrowGroup[7] = transform.Find("ArrowGroup").transform.Find("12").GetComponent<Image>();
         foreach (var arrow in _arrowGroup)
         {
-            arrow.color = new Color(255,255,255,0);
+            arrow.color = new Color(1f,1f,1f,0);
         }
         isWalkable = true;
+        isEndNode = false;
     }
     
     public int Cost
@@ -87,5 +99,10 @@ public class AStarNodeButton : MonoBehaviour
             totalCost = value;
             _totalText.text = value.ToString();
         }
+    }
+
+    public void SetColor(Color color)
+    {
+        _UIImage.color = color;
     }
 }
