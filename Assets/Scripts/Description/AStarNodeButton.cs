@@ -22,10 +22,11 @@ public class AStarNodeButton : MonoBehaviour
     {
         if (DescriptionAStar.Instance.isOnFinding)
         {
-            if (isClosed) return;
+            if (isClosed || !isWalkable) return;
             DescriptionAStar.Instance.CheckNeighbourNode(this);
-            _UIImage.color = Color.red;
             isClosed = true;
+            if (isEndNode) return;
+            _UIImage.color = Color.red;
             return;
         }
         
@@ -57,6 +58,7 @@ public class AStarNodeButton : MonoBehaviour
             arrow.color = new Color(1f,1f,1f,0);
         }
         _arrowGroup[localRotation].color = Color.white;
+        if (isEndNode) return;
         _UIImage.color = Color.green;
     }
 

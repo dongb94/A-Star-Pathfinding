@@ -60,8 +60,8 @@ public class DescriptionAStar : MonoBehaviour
             for (int y = -1; y <= 1; y++)
             {
                 if (x == 0 && y == 0) continue;
-                var searchNode = _nodes[node.y + y][node.x + x];
-                if (searchNode.isClosed) continue;
+                var searchNode = _nodes[node.y + x][node.x + y];
+                if (searchNode.isClosed || !searchNode.isWalkable) continue;
 
                 int dst = 0, rotation = 0;
                 
@@ -69,15 +69,15 @@ public class DescriptionAStar : MonoBehaviour
                 {
                     case -1 :
                         dst = y == 0 ? 5 : 7;
-                        rotation = 3 - y;
+                        rotation = (7 - y) % 8;
                         break;
                     case 0 :
                         dst = 5;
-                        rotation = y == -1 ? 5 : 1;
+                        rotation = y == -1 ? 1 : 5;
                         break;
                     case 1 :
                         dst = y == 0 ? 5 : 7;
-                        rotation = (7 + y) % 8;
+                        rotation = 3 + y;
                         break;
                 }
 
@@ -100,5 +100,6 @@ public class DescriptionAStar : MonoBehaviour
                 }
             }
         }
+        if(node == end) node.FindThePath();
     }
 }
