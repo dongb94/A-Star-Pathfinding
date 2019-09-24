@@ -1,7 +1,9 @@
 
 using UnityEngine;
 
-public class AStar : MonoBehaviour
+public class AStarCompleted : MonoBehaviour
 {
     public Transform Start, End;
+    
+    
 }
