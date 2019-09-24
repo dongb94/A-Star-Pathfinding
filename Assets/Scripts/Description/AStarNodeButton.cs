@@ -23,6 +23,7 @@ public class AStarNodeButton : MonoBehaviour
         if (DescriptionAStar.Instance.isOnFinding)
         {
             if (isClosed || !isWalkable) return;
+            if (!isEndNode && cost == 0) return;
             DescriptionAStar.Instance.CheckNeighbourNode(this);
             isClosed = true;
             if (isEndNode) return;
@@ -55,9 +56,9 @@ public class AStarNodeButton : MonoBehaviour
         parents = parentsNode;
         foreach (var arrow in _arrowGroup)
         {
-            arrow.color = new Color(1f,1f,1f,0);
+            arrow.color = new Color(0f,.25f,.5f,0);
         }
-        _arrowGroup[localRotation].color = Color.white;
+        _arrowGroup[localRotation].color = new Color(0f,.25f,.5f,1f);
         if (isEndNode) return;
         _UIImage.color = Color.green;
     }
