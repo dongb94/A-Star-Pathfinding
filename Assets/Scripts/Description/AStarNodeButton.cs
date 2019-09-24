@@ -56,6 +56,7 @@ public class AStarNodeButton : MonoBehaviour
         {
             arrow.color = new Color(255,255,255,0);
         }
+        isWalkable = true;
     }
     
     public int Cost
