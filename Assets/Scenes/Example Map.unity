@@ -149,8 +149,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea4cb09bc3434ee38894d832afe6f184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Start: {fileID: 1291793185}
-  End: {fileID: 2111136770}
+  StartNode: {fileID: 1291793185}
+  EndNode: {fileID: 2111136770}
 --- !u!4 &228419783
 Transform:
   m_ObjectHideFlags: 0
@@ -578,7 +578,6 @@ GameObject:
   - component: {fileID: 1291793185}
   - component: {fileID: 1291793184}
   - component: {fileID: 1291793183}
-  - component: {fileID: 1291793182}
   m_Layer: 0
   m_Name: Start
   m_TagString: Untagged
@@ -586,20 +585,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!136 &1291793182
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1291793181}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1291793183
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -842,7 +827,6 @@ GameObject:
   - component: {fileID: 2111136770}
   - component: {fileID: 2111136769}
   - component: {fileID: 2111136768}
-  - component: {fileID: 2111136767}
   m_Layer: 0
   m_Name: End
   m_TagString: Untagged
@@ -850,20 +834,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!136 &2111136767
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2111136766}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &2111136768
 MeshRenderer:
   m_ObjectHideFlags: 0
