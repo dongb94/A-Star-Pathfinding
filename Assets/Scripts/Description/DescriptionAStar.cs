@@ -55,29 +55,33 @@ public class DescriptionAStar : MonoBehaviour
 
     public void CheckNeighbourNode(AStarNodeButton node)
     {
-        for (int x = -1; x <= 1; x++)
+        for (int y = -1; y <= 1; y++)
         {
-            for (int y = -1; y <= 1; y++)
+            if(node.y == 0 && y==-1) continue;
+            if(node.y == Size-1 && y==1) continue;
+            for (int x = -1; x <= 1; x++)
             {
-                if (x == 0 && y == 0) continue;
-                var searchNode = _nodes[node.y + x][node.x + y];
+                if (y == 0 && x == 0) continue;
+                if(node.x == 0 && x==-1) continue;
+                if(node.x == Size-1 && x==1) continue;
+                var searchNode = _nodes[node.y + y][node.x + x];
                 if (searchNode.isClosed || !searchNode.isWalkable) continue;
 
                 int dst = 0, rotation = 0;
                 
-                switch (x)
+                switch (y)
                 {
                     case -1 :
-                        dst = y == 0 ? 5 : 7;
-                        rotation = (7 - y) % 8;
+                        dst = x == 0 ? 5 : 7;
+                        rotation = (7 - x) % 8;
                         break;
                     case 0 :
                         dst = 5;
-                        rotation = y == -1 ? 1 : 5;
+                        rotation = x == -1 ? 1 : 5;
                         break;
                     case 1 :
-                        dst = y == 0 ? 5 : 7;
-                        rotation = 3 + y;
+                        dst = x == 0 ? 5 : 7;
+                        rotation = 3 + x;
                         break;
                 }
 
