@@ -7,6 +7,7 @@ public class AStarNodeButton : MonoBehaviour
 {
     [NonSerialized] public AStarNodeButton parents;
     [NonSerialized] public bool isWalkable;
+    [NonSerialized] public bool isClosed;
     [NonSerialized] public int x, y;
 
     private int cost, heuristics, totalCost;
@@ -19,12 +20,21 @@ public class AStarNodeButton : MonoBehaviour
 
     public void OnClick()
     {
+        if (DescriptionAStar.Instance.isOnFinding)
+        {
+            if (isClosed) return;
+            DescriptionAStar.Instance.CheckNeighbourNode(this);
+            _UIImage.color = Color.red;
+            isClosed = true;
+            return;
+        }
+        
         if (isEndNode) return;
-        if (!AStar.Instance.isSetEnd)
+        if (!DescriptionAStar.Instance.isSetEnd)
         {
             isEndNode = true;
-            _totalText.text = !AStar.Instance.isSetStart ? "START" : "END";
-            AStar.Instance.SetStartAndEnd(this);
+            _totalText.text = !DescriptionAStar.Instance.isSetStart ? "START" : "END";
+            DescriptionAStar.Instance.SetStartAndEnd(this);
             _UIImage.color = new Color(0,128/255f,1f);
             return;
         }
@@ -40,12 +50,14 @@ public class AStarNodeButton : MonoBehaviour
 
     public void SetParentsNode(AStarNodeButton parentsNode, int localRotation)
     {
+        if (isClosed) return;
         parents = parentsNode;
         foreach (var arrow in _arrowGroup)
         {
             arrow.color = new Color(1f,1f,1f,0);
         }
         _arrowGroup[localRotation].color = Color.white;
+        _UIImage.color = Color.green;
     }
 
     private void Awake()
@@ -69,6 +81,7 @@ public class AStarNodeButton : MonoBehaviour
         }
         isWalkable = true;
         isEndNode = false;
+        isClosed = false;
     }
     
     public int Cost
@@ -77,6 +90,7 @@ public class AStarNodeButton : MonoBehaviour
         set
         {
             cost = value;
+            TotalCost = heuristics + cost;
             _costText.text = value.ToString();
         }
     }
@@ -87,6 +101,7 @@ public class AStarNodeButton : MonoBehaviour
         set
         {
             heuristics = value;
+            TotalCost = heuristics + cost;
             _heuristicsText.text = value.ToString();
         }
     }
