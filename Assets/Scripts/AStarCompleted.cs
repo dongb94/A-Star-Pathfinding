@@ -35,7 +35,7 @@ public class AStarCompleted : MonoBehaviour
         while (openNode.Count != 0)
         {
             var currentNode = openNode.PopFirst(); // 열려있는 노드 중 cost가 가장 작은 노드를 선택한다.
-            closeNode.Add(currentNode);
+            closeNode.Add(currentNode); // 탐색하는 노드를 닫힌 노드에 추가한다.
 
             // 경로를 찾은 경우
             if (currentNode == endNode)
@@ -48,16 +48,20 @@ public class AStarCompleted : MonoBehaviour
 
             foreach (var searchNode in neighbourNodes)
             {
-                if (!searchNode.walkable || closeNode.Contains(searchNode)) continue;
+                if (!searchNode.walkable || closeNode.Contains(searchNode)) continue; // 탐색하는 노드가 플레이어가 갈 수 없는 노드이거나 닫힌 노드이면 넘어간다.
 
-                int distance = currentNode.gCost + GetDistance(currentNode, searchNode);
-                if (distance < searchNode.gCost || !openNode.Contains(searchNode))
+                int distance = currentNode.gCost + GetDistance(currentNode, searchNode); // 현재 경로를 통한 시작노드로부터 탐색 노드 까지의 거리
+                
+                // 다음과 같은 경우에 업데이트 한다.
+                // 1. 탐색노드가 탐색한 적 없는 노드일 경우.
+                // 2. 탐색노드에 저장돼있는 시작노드로부터 탐색노드까지의 이동거리가 현재 경로를 통한 이동거리보다 긴 경우
+                if (distance < searchNode.gCost || !openNode.Contains(searchNode)) 
                 {
                     searchNode.gCost = distance;
                     searchNode.hCost = GetDistance(searchNode, endNode);
                     searchNode.parent = currentNode;
                     
-                    if(!openNode.Contains(searchNode))
+                    if(!openNode.Contains(searchNode)) // 탐색한 노드가 열린 그룹에 있지 않으면 추가한다.
                         openNode.Add(searchNode);
                 }
             }
