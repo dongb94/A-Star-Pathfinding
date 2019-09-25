@@ -73,6 +73,14 @@ public class AStarCompleted : MonoBehaviour
     private List<Node> GetPath(Node startNode, Node endNode)
     {
         List<Node> path = new List<Node>();
+        Node current = endNode;
+        while (current != null)
+        {
+            path.Add(current);
+            current = current.parent;
+        }
+        path.Reverse();
+        
         return path;
     }
 
