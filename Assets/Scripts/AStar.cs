@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class AStar : MonoBehaviour
 {
-    public Transform StartNode, EndNode;
+    public Transform StartPoint, EndPoint;
 
     private Grid grid;
 

@@ -18,7 +18,7 @@ public class Heap<T> where T : IHeapItem<T> {
         currentItemCount++;
     }
 
-    public T RemoveFirst() {
+    public T PopFirst() {
         T firstItem = items[0];
         currentItemCount--;
         items[0] = items[currentItemCount];
